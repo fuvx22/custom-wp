@@ -37,7 +37,7 @@ $base_path = 'http://localhost/wordpress/wp-admin/admin.php?page=chung-chi&s=' .
 $search_sql = "";
 if (!empty($search_value)) {
   $search = '%' . $search_value . '%';
-  $search_sql .= " WHERE name LIKE '$search' OR email LIKE '$search' OR phone LIKE '$search'";
+  $search_sql .= " AND name LIKE '$search' OR email LIKE '$search' OR phone LIKE '$search'";
 
   $total_record = $wpdb->get_var("SELECT COUNT(*) FROM $table_name $search_sql");
   $total_page = ceil($total_record / $record_per_page);
@@ -48,7 +48,7 @@ if (!empty($search_value)) {
 
 
 $users = $wpdb->get_results("SELECT id, name, phone, email, certificated 
-FROM $table_name $search_sql ORDER BY id DESC LIMIT $record_per_page OFFSET $skip_value");
+FROM $table_name WHERE isDeleted LIKE 0 $search_sql ORDER BY id DESC LIMIT $record_per_page OFFSET $skip_value");
 
 ?>
 
