@@ -31,11 +31,11 @@
 global $wpdb;
 $table_name = $wpdb->prefix . 'certificate';
 
-function tranformSvg($svgContent)
-{
-  $temp = str_replace("\'", "'", $svgContent);
-  return str_replace('\"', "'", $temp);
-}
+// function tranformSvg($svgContent)
+// {
+//   $temp = str_replace("\'", "'", $svgContent);
+//   return str_replace('\"', "'", $temp);
+// }
 
 
 if (isset($_POST["add-certificate"])) {
